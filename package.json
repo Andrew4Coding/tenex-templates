@@ -1,6 +1,6 @@
 {
   "name": "tenex-templates",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A CLI to initialize framework projects from templates with interactive prompts and robust file handling.",
   "author": "Andrew4Coding",
   "license": "MIT",

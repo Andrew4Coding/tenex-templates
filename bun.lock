@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "hono-template",
+      "name": "tenex-templates",
       "dependencies": {
         "chalk": "^5.4.1",
         "commander": "^14.0.0",
