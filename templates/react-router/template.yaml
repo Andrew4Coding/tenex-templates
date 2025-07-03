@@ -1,0 +1,17 @@
+name: React Router Template
+description: A template for setting up a React application with React Router equipped with Better Auth Integration
+version: 1.0.0
+steps:
+  - name: Copy Template Files
+    description: Copying current template files to current directory.
+    run: copy_template_files
+  
+  - name: Install Dependencies
+    description: Installing necessary dependencies for the Hono JS application.
+    run: pnpm install
+  
+  - name: Add Another Environment Variables
+    description: Adding another environment variable to the .env file.
+    run: |
+      echo "Adding another environment variable to .env"
+      echo "BACKEND_URL=http://localhost:8000" >> .env
