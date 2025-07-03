@@ -1,16 +1,28 @@
 {
   "name": "tenex-templates",
-  "version": "1.0.0",
-  "scripts": {
-    "execute": "bun run src/index.ts"
+  "version": "1.0.2",
+  "description": "A CLI to initialize framework projects from templates with interactive prompts and robust file handling.",
+  "author": "Andrew4Coding",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Andrew4Coding/tenex-templates"
   },
+  "keywords": [
+    "cli",
+    "scaffolding",
+    "templates",
+    "framework",
+    "project-generator"
+  ],
   "bin": {
-    "tenex-templates": "./src/index.ts"
+    "tenex-templates": "dist/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node dist/index.js"
+  },
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^14.0.0",
@@ -20,6 +32,7 @@
     "inquirer": "^12.7.0",
     "ora": "^8.2.0",
     "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
     "yaml": "^2.8.0"
   },
   "devDependencies": {

@@ -6,6 +6,13 @@
             "@/*": [
                 "src/*"
             ]
-        }
-    }
+        },
+        "outDir": "dist",
+        "rootDir": "src",
+        "module": "CommonJS",
+        "target": "ES2020",
+        "esModuleInterop": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["templates", "dist", "node_modules"]
 }
