@@ -1,0 +1,53 @@
+name: Hono JS Template
+description: A template for Hono JS applications, equipped with Prisma, Better Auth, Prettier, and Fly IO Configuration.
+version: 1.0.0
+steps:
+  - name: Copy Template Files
+    description: Copying current template files to current directory.
+    run: copy_template_files
+  
+  - name: Install Dependencies
+    description: Installing necessary dependencies for the Hono JS application.
+    run: bun install
+  
+  - name: Initialize New PostgreSQL Database
+    description: Initializing a new PostgreSQL database for the application.
+    prompts:
+      - name: DB_NAME
+        message: Enter the database name
+        type: input
+      - name: DB_USER
+        message: Enter the Postgres user
+        type: input
+        default: postgres
+      - name: DB_PASSWORD
+        message: Enter the Postgres password
+        type: input
+        default: postgres
+    run: |
+      echo "Using database: $DB_NAME"
+      echo "Using user: $DB_USER"
+      echo "Using password: $DB_PASSWORD"
+      echo "DATABASE_URL=postgresql://$DB_USER:$DB_PASSWORD@localhost:5432/$DB_NAME" > .env
+      bunx prisma db push --accept-data-loss --schema ./prisma/schema.prisma
+      bunx prisma generate --schema ./prisma/schema.prisma
+
+  - name: Add Another Environment Variables
+    description: Adding another environment variable to the .env file.
+    run: |
+      echo "Adding another environment variable to .env"
+      echo "APP_WHITELIST=http://localhost:3000;http://localhost:3001" >> .env
+      echo "PORT=8000" >> .env
+    
+  - name: Setup Fly IO Deployment
+    description: Setting up Fly IO deployment configuration.
+    prompts:
+      - name: DEPLOY_FLY
+        message: Do you want to deploy to Fly IO?
+        type: confirm
+        default: false
+    run: |
+      if [ "$DEPLOY_FLY" = true ]; then
+        flyctl launch
+      fi
+  
