@@ -1,5 +1,5 @@
+.react-router
+build
 node_modules
+README.md
 .env
-.react-router/
-
-prisma/generated/

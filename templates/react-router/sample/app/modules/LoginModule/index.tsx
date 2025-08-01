@@ -8,7 +8,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { getAuthClient } from "~/lib/auth.client";
+import { getAuthClient } from "~/lib/auth";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -25,11 +25,10 @@ export const LoginModule = () => {
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const authClient = getAuthClient();
 
-  const onSubmit = async (data: LoginFormValues) => { 
+  const onSubmit = async (data: LoginFormValues) => {
     setLoading(true);
-
-    const authClient = getAuthClient();
 
     const res = await authClient.signIn.email({
       email: data.email,
@@ -45,7 +44,7 @@ export const LoginModule = () => {
     toast.success('Login successful!');
 
     setLoading(false);
-    
+
     navigate('/');
   }
 

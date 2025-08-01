@@ -1,10 +1,9 @@
 import { redirect, type LoaderFunctionArgs } from 'react-router';
-import { auth } from '~/lib/auth';
+import { getUserFromRequest } from '~/lib/auth.server';
 
 export async function LoginLoader({ request }: LoaderFunctionArgs) {
-  const session = await auth.api.getSession(request);
-
-  if (session?.user) {
+  const user = await getUserFromRequest(request);
+  if (user.user) {
     return redirect('/');
   }
 
