@@ -10,8 +10,12 @@ steps:
     description: Installing necessary dependencies for the Hono JS application.
     run: pnpm install
   
-  - name: Add Another Environment Variables
-    description: Adding another environment variable to the .env file.
-    run: |
-      echo "Adding another environment variable to .env"
-      echo "BACKEND_URL=http://localhost:8000" >> .env
+  - name: Add Gitignore
+    description: Adding a .gitignore file to the project.
+    run: touch .gitignore && 
+          echo "node_modules/" >> .gitignore && \
+          echo ".env" >> .gitignore && \
+          echo "dist/" >> .gitignore && \
+          echo "build/" >> .gitignore && \
+          echo ".react-router/" >> .gitignore && \
+          echo ".DS_Store" >> .gitignore && \

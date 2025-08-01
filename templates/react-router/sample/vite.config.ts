@@ -13,4 +13,11 @@ export default defineConfig({
     host: '0.0.0.0',
     port: parseInt(process.env.PORT || '3000'),
   },
+  ...(process.env.NODE_ENV === 'production' && {
+    resolve: {
+      alias: {
+        'react-dom/server': 'react-dom/server.node',
+      },
+    },
+  }),
 });

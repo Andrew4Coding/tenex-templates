@@ -1,18 +1,14 @@
-import { createAuthClient } from "better-auth/react";
-import { useRouteLoaderData } from "react-router";
-import type { loader as rootLoader } from "~/root";
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from 'better-auth/adapters/prisma';
+import { PrismaClient } from "prisma/generated/client";
 
-export const getAuthClient = () => {
-    let root_loader_data = useRouteLoaderData<typeof rootLoader>("root");
-    let auth_url = root_loader_data?.auth_url;
+const prismaAdmin = new PrismaClient();
 
-    if (!auth_url) {
-        throw new Error("Null auth url");
-    }
-
-    const auth_client = createAuthClient({
-        baseURL: auth_url,
-    });
-
-    return auth_client;
-};
+export const auth = betterAuth({
+  database: prismaAdapter(prismaAdmin, {
+    provider: 'postgresql',
+  }),
+  emailAndPassword: {
+    enabled: true,
+  },
+})
